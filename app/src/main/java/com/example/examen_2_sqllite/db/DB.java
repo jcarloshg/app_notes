@@ -34,8 +34,9 @@ public class DB extends SQLiteOpenHelper {
     // USER
     public static final String TABLE_USER = "TABLE_USER";
     public static final String USER_ID = "USER_ID";
-    public static final String USER_NAME = "USER_NAME";
+    public static final String USER_NICKNAME = "USER_NICKNAME";
     public static final String USER_PASSWORD = "USER_PASSWORD";
+    public static final String USER_NAME = "USER_NAME";
 
     public DB(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -77,8 +78,9 @@ public class DB extends SQLiteOpenHelper {
                 "CREATE TABLE " + TABLE_USER +
                         " (" +
                         USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        USER_NAME + " TEXT NOT NULL, " +
-                        USER_PASSWORD + " TEXT NOT NULL " +
+                        USER_NICKNAME + " TEXT NOT NULL, " +
+                        USER_PASSWORD + " TEXT NOT NULL, " +
+                        USER_NAME + " TEXT NOT NULL " +
                         ")"
         );
     }

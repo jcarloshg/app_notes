@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.examen_2_sqllite.db.DB;
+import com.example.examen_2_sqllite.db.DBUser;
+import com.example.examen_2_sqllite.entities.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "DB created", Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(this, "DB not created", Toast.LENGTH_LONG).show();
-        }catch (Exception e){
-            Log.e("[create data base] ", "onCreate: ", e );
+        } catch (Exception e) {
+            Log.e("[create data base] ", "onCreate: ", e);
         }
 
     }
@@ -53,8 +55,26 @@ public class MainActivity extends AppCompatActivity {
         button_ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent menu_principal = new Intent(MainActivity.this, MenuPrincipal.class);
-                startActivity(menu_principal);
+
+                final String user_nickname = editText_user.getText().toString();
+                final String user_password = editText_password.getText().toString();
+
+                DBUser dbUser = new DBUser(getApplicationContext());
+                User user = dbUser.get_user(user_nickname, user_password);
+
+                if (user != null) {
+                    Intent menu_principal = new Intent(MainActivity.this, MenuPrincipal.class);
+                    menu_principal.putExtra("user_name", user.getName());
+                    startActivity(menu_principal);
+                } else {
+                    Toast.makeText
+                            (
+                                    getApplicationContext(),
+                                    "El usuario no existe",
+                                    Toast.LENGTH_LONG
+                            ).show();
+                }
+
             }
         });
     }

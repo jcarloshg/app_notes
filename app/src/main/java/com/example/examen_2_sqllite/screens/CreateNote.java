@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +19,10 @@ import com.example.examen_2_sqllite.adapter.AdapterArticle;
 import com.example.examen_2_sqllite.db.DB;
 import com.example.examen_2_sqllite.db.DBArticle;
 import com.example.examen_2_sqllite.db.DBNote;
+import com.example.examen_2_sqllite.db.DBNoteArticle;
+import com.example.examen_2_sqllite.db.DBUser;
 import com.example.examen_2_sqllite.entities.Article;
+import com.example.examen_2_sqllite.entities.User;
 
 import java.util.ArrayList;
 
@@ -62,7 +66,25 @@ public class CreateNote extends AppCompatActivity {
                 DBArticle dbArticle = new DBArticle(getApplicationContext());
                 ArrayList<Article> list_article = dbArticle.get_articles_by_name(article_name);
                 Article article = list_article.get(0); // get only article
+                final int article_id = article.getId();
 
+                DBNoteArticle dbNoteArticle = new DBNoteArticle(getApplicationContext());
+                long note_article_id = dbNoteArticle.insert_note_and_article((int) note_id, article_id);
+
+                if (note_article_id != -1) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "El articulo con  ID: " + article_id +
+                                    " a sido agregado a la nota con ID: " + note_id,
+                            Toast.LENGTH_LONG
+                    ).show();
+                } else {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Err al agregar articulo",
+                            Toast.LENGTH_LONG
+                    ).show();
+                }
 
             }
         });
@@ -156,7 +178,15 @@ public class CreateNote extends AppCompatActivity {
             dbArticle.insert_article(article);
 
         // insert users ================================================
+        ArrayList<User> list_user = new ArrayList<>();
+        list_user.add(new User(0, "jcarloshg", "jcarloshg123", "Jose Carlos"));
+        list_user.add(new User(1, "luisdav", "luisdav", "Luis David Hernadez"));
+        list_user.add(new User(2, "chrispc", "chrispc", "Christian Pasten"));
+        list_user.add(new User(3, "sarav", "sarav", "Sarahi Vazquez"));
 
+        DBUser dbUser = new DBUser(v.getContext());
+        for (User user: list_user)
+            Log.i("[INSERT USER]", "restore_data: " + dbUser.insert_user(user));
 
     }
 

@@ -77,7 +77,7 @@ public class DBArticle extends DB {
         return list_articles;
     }
 
-    public ArrayList<Article> get_articles_by_name(String name){
+    public ArrayList<Article> get_articles_by_name(String name) {
         ArrayList<Article> list_articles = new ArrayList<>();
 
         try {
@@ -108,11 +108,50 @@ public class DBArticle extends DB {
                 } while (cursor.moveToNext());
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.e("[get_article_by_name] ", " ", e);
         }
 
         return list_articles;
     }
+
+    public Article get_article_by_id(int article_id) {
+        Article article = null;
+
+        try {
+            DB db = new DB(this.context);
+            SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
+
+            Cursor cursor = sqLiteDatabase.rawQuery(
+                    "SELECT * " +
+                            " FROM " + DB.TABLE_ARTICLE +
+                            " WHERE " + DB.ARTICLE_ID + " = " + article_id + " ;",
+                    null);
+
+            if (cursor.moveToFirst()) {
+                int column_id = cursor.getColumnIndex(DB.ARTICLE_ID);
+                int column_name = cursor.getColumnIndex(DB.ARTICLE_NAME);
+                int column_brand = cursor.getColumnIndex(DB.ARTICLE_BRAND);
+                int column_cost = cursor.getColumnIndex(DB.ARTICLE_COST);
+                int column_amount = cursor.getColumnIndex(DB.ARTICLE_AMOUNT);
+
+                article =
+                        new Article(
+                                cursor.getInt(column_id),
+                                cursor.getString(column_name),
+                                cursor.getString(column_brand),
+                                cursor.getFloat(column_cost),
+                                cursor.getInt(column_amount)
+                        );
+            }
+
+        } catch (Exception e) {
+            Log.e("[get_article_by_id] ", " ", e);
+        }
+
+        return article;
+    }
+
+
 
 }

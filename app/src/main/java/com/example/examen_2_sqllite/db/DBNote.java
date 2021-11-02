@@ -34,4 +34,22 @@ public class DBNote extends DB {
         }
         return note_id;
     }
+
+    public boolean delete_note(int note_id){
+        boolean is_remove = false;
+
+        DB db = new DB(this.context);
+        SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
+
+        try {
+            String whereClause = DB.NOTE_ID + " = ?";
+            String[] whereArgs = new String[] { String.valueOf(note_id) };
+            sqLiteDatabase.delete(DB.TABLE_NOTE, whereClause, whereArgs);
+            is_remove = true;
+        } catch (Exception ex) {
+            Log.e("[remove_row]", ex.toString());
+        }
+
+        return  is_remove;
+    }
 }
