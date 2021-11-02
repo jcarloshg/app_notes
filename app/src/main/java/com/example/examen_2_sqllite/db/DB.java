@@ -23,9 +23,11 @@ public class DB extends SQLiteOpenHelper {
     // note
     public static final String TABLE_NOTE = "TABLE_NOTE";
     public static final String NOTE_ID = "NOTE_ID";
+    public static final String NOTE_WORD_AUX = "NOTE_WORD_AUX";
 
     // ARTICLE_NOTE
     public static final String TABLE_ARTICLE_NOTE = "TABLE_ARTICLE_NOTE";
+    public static final String ARTICLE_NOTE_ID = "ARTICLE_NOTE_ID";
     public static final String ARTICLE_NOTE_ARTICLE_ID = "ARTICLE_NOTE_ARTICLE_ID";
     public static final String ARTICLE_NOTE_NOTE_ID = "ARTICLE_NOTE_NOTE_ID";
 
@@ -57,23 +59,24 @@ public class DB extends SQLiteOpenHelper {
         db.execSQL(
                 "CREATE TABLE " + TABLE_NOTE +
                         " (" +
-                        NOTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
+                        NOTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        NOTE_WORD_AUX + " TEXT NOT NULL " +
                         ")"
         );
 
         db.execSQL(
                 "CREATE TABLE " + TABLE_ARTICLE_NOTE +
                         " (" +
-                        ARTICLE_NOTE_ARTICLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        ARTICLE_NOTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         ARTICLE_NOTE_NOTE_ID + " INTEGER NOT NULL, " +
-                        ARTICLE_BRAND + " INTEGER NOT NULL " +
+                        ARTICLE_NOTE_ARTICLE_ID + " INTEGER NOT NULL " +
                         ")"
         );
 
         db.execSQL(
                 "CREATE TABLE " + TABLE_USER +
                         " (" +
-                        USER_ID + " TEXT PRIMARY KEY AUTOINCREMENT, " +
+                        USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         USER_NAME + " TEXT NOT NULL, " +
                         USER_PASSWORD + " TEXT NOT NULL " +
                         ")"
