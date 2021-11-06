@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DCDCDC"
     tools:context=".MenuPrincipal">
 
     <LinearLayout
@@ -20,10 +21,10 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            app:srcCompat="@android:drawable/btn_star_big_on"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            app:srcCompat="@drawable/pngtree_user_login_or_authenticate_icon_on_gray_background_flat_icon_ve_png_image_1786166"
+            tools:srcCompat="@drawable/pngtree_user_login_or_authenticate_icon_on_gray_background_flat_icon_ve_png_image_1786166" />
 
         <TextView
             android:id="@+id/textView_nameEmploye"
@@ -31,13 +32,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
             android:text="[NAME_EMPLOYE]"
             android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -52,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:backgroundTint="#953958"
             android:text="crear nota" />
 
         <Button
@@ -59,6 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:backgroundTint="#953958"
             android:text="consultar nota" />
 
         <Button
@@ -66,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:backgroundTint="#953958"
             android:text="eliminar nota" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

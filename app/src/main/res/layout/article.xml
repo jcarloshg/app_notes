@@ -28,10 +28,10 @@
 
         <ImageView
             android:id="@+id/imageView_article"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/ic_baseline_insert_photo_24"
-            tools:srcCompat="@drawable/ic_baseline_insert_photo_24" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/png_clipart_unidentified_flying_object_computer_icons_black_and_white_ovni_extraterrestrial_life_starship"
+            tools:srcCompat="@drawable/png_clipart_unidentified_flying_object_computer_icons_black_and_white_ovni_extraterrestrial_life_starship" />
 
         <LinearLayout
             android:layout_width="match_parent"
